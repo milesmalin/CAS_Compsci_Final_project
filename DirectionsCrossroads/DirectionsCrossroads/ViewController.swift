@@ -27,6 +27,41 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         locationManager.requestWhenInUseAuthorization()
         
         
+        if CLLocationManager.locationServicesEnabled(){
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+        }
+        
+        let sourceCoordinates = (locationManager.location?.coordinate)!
+        let destCoordinates = CLLocationCoordinate2DMake(34.0246, -118.4739)
+        let sourcePlacemark = MKPlacemark(coordinate: sourceCoordinates)
+        let destPlacemark = MKPlacemark(coordinate: destCoordinates)
+        let sourceItem = MKMapItem(placemark: sourcePlacemark)
+        let destItem = MKMapItem(placemark: destPlacemark)
+        let directionRequest = MKDirections.Request()
+        directionRequest.source = sourceItem
+        directionRequest.destination = destItem
+        directionRequest.transportType = .walking
+        
+        let directions = MKDirections(request: directionRequest)
+        directions.calculate(completionHandler: {
+            response, error in
+            
+            guard let response = response else {
+                if error != nil{
+                    print("Error")
+                }
+                return
+            }
+            
+            let route = response.routes[0]
+            self.mapkitView.addOverlay(route.polyline, level: .aboveRoads)
+            
+            let rekt = route.polyline.boundingMapRect
+            self.mapkitView.setRegion(MKCoordinateRegion(rekt), animated: true)
+        })
+        
     }
 
 
