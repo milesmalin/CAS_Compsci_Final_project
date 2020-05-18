@@ -53,6 +53,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Directions to Crossroads</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Directions to Crossroads</string>
 	<key>NSLocationUsageDescription</key>
