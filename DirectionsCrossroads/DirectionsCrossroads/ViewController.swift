@@ -63,6 +63,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         })
         
     }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = UIColor.blue
+        renderer.lineWidth = 5.0
+        
+        return renderer
+    }
 
 
 }
