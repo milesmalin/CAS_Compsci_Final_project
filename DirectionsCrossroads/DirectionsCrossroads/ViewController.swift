@@ -12,6 +12,9 @@ import MapKit
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var mapkitView: MKMapView!
+    @IBOutlet weak var ETALabel: UILabel!
+    
+    typealias ETAHandler = (MKDirections.ETAResponse?, Error?) -> Void
     
     let locationManager = CLLocationManager()
     
@@ -70,6 +73,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         renderer.lineWidth = 5.0
         
         return renderer
+    }
+    
+    func calculateETA(completionHandler: @escaping MKDirections.ETAHandler) {
+        let ETA = ETALabel
+        
+        
     }
 
 
