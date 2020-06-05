@@ -12,7 +12,7 @@ import MapKit
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var mapkitView: MKMapView!
-    @IBOutlet weak var ETALabel: UILabel!
+    //@IBOutlet weak var ETALabel: UILabel!
     
     typealias ETAHandler = (MKDirections.ETAResponse?, Error?) -> Void
     
@@ -75,12 +75,37 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         return renderer
     }
     
-    func calculateETA(completionHandler: @escaping MKDirections.ETAHandler) {
-        let ETA = ETALabel
-        
-        
-    }
+        /*
+    class func requestETA(userCLLocation: CLLocation, coordinate: CLLocationCoordinate2D) -> String {
 
+        var travelTime = String()
+
+        let request = MKDirections.Request()
+        /* Source MKMapItem */
+        let sourceItem = MKMapItem(placemark: MKPlacemark(coordinate: userCLLocation.coordinate, addressDictionary: nil))
+        request.source = sourceItem
+        /* Destination MKMapItem */
+        let destinationItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary: nil))
+        request.destination = destinationItem
+        request.requestsAlternateRoutes = false
+        // Looking for walking directions
+        request.transportType = MKDirectionsTransportType.walking
+
+        // You use the MKDirectionsRequest object constructed above to initialise an MKDirections object
+        let directions = MKDirections(request: request)
+        directions.calculateETA { (etaResponse, error) -> Void in
+            if let error = error {
+                print("Error while requesting ETA : \(error.localizedDescription)")
+                travelTime = "Not Available"
+            }else{
+                print("No error requesting ETA")
+                travelTime = "\(Int((etaResponse?.expectedTravelTime)!/60)) min"
+            }
+        }
+
+        return travelTime
+    }
+*/
 
 }
 
